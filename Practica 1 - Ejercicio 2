@@ -1,0 +1,15 @@
+# Recuperación de contraseña en Ubuntu usando modo Recovery
+
+# 1. Reinicia el equipo y en el menú de GRUB selecciona "Opciones avanzadas para Ubuntu".
+
+# 2. Selecciona la entrada que incluye "(recovery mode)" y presiona Enter.
+
+# 3. En el menú de recuperación, selecciona "root" para abrir una consola con permisos root.
+
+# 4. Cambia la contraseña del usuario (ejemplo: usuario 'teste'):
+passwd teste
+
+# 5. Ingresa la nueva contraseña y confírmala.
+
+# 6. Finalmente, reinicia el sistema con:
+reboot
