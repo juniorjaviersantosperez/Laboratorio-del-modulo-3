@@ -1,0 +1,11 @@
+sudo nano backup.sh              # Crear o editar backup.sh
+chmd +x backup.sh               # ❌ Error de tipeo en chmod
+chmod +x backup.sh              # Dar permisos de ejecución
+sudo chmod +x backup.sh         # Repetido con sudo
+./backup.sh                     # Ejecutar el script
+clear                           # Limpiar pantalla
+sudo ifconfiprueba.sh           # ❌ Error: falta el ./ inicial
+sudo nano ifconfiprueba.sh      # Crear o editar el segundo script
+sudo chmod +x ifconfiprueba.sh  # Permisos de ejecución
+./ifconfiprueba.sh              # Ejecutar el script
+
