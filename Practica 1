@@ -1,0 +1,10 @@
+# Editar archivo de configuración de GRUB para cambiar tiempo de espera a 20 segundos
+sudo nano /etc/default/grub
+
+# Actualizar configuración de GRUB
+sudo update-grub
+
+# Reiniciar el sistema para aplicar cambios
+sudo reboot
+
+
