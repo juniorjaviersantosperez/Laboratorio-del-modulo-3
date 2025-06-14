@@ -1,0 +1,18 @@
+# Verificar interfaces de red
+ifconfig
+
+# Verificar correctamente el estado del servicio SSH
+sudo systemctl status ssh
+
+# Crear el directorio .ssh en el home (por si no existe)
+mkdir -p ~/.ssh
+
+# Editar el archivo de claves autorizadas para acceso remoto
+nano ~/.ssh/authorized_keys
+
+# Cambiar permisos del directorio para mayor seguridad
+chmod 700 ~/.ssh
+
+# Cambiar permisos del archivo para mayor seguridad
+chmod 600 ~/.ssh/authorized_keys
+
