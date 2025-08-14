@@ -1,10 +1,76 @@
-# Editar archivo de configuración de GRUB para cambiar tiempo de espera a 20 segundos
-sudo nano /etc/default/grub
 
-# Actualizar configuración de GRUB
-sudo update-grub
+# Entrar como superusuario
+sudo su
 
-# Reiniciar el sistema para aplicar cambios
-sudo reboot
+# Editar el archivo de configuración de GRUB
+nano /etc/default/grub
 
+# Dentro del archivo, dejar estas líneas (revisar la sintaxis correcta):
 
+GRUB_DEFAULT=0
+GRUB_TIMEOUT_STYLE=hidden
+GRUB_TIMEOUT=20
+GRUB_DISTRIBUTOR=$(. /etc/os-release; echo ${NAME:-Ubuntu})
+GRUB_CMDLINE_LINUX_DEFAULT=""
+GRUB_CMDLINE_LINUX=""
+
+# Guardar cambios en nano:
+# CTRL + O (guardar)
+# ENTER (confirmar)
+# CTRL + X (salir)
+
+# Limpiar pantalla (opcional)
+clear
+
+# Actualizar la configuración del GRUB
+update-grub
+
+# Reiniciar el sistema
+reboot
+
+# --- DESPUÉS DE REINICIAR ---
+
+# (Opcional) volver a ajustar el timeout a 0 si deseas:
+
+sudo su
+nano /etc/default/grub
+
+# Modificar estas líneas:
+
+GRUB_DEFAULT=0
+GRUB_TIMEOUT_STYLE=hidden
+GRUB_TIMEOUT=0
+GRUB_DISTRIBUTOR=$(. /etc/os-release; echo ${NAME:-Ubuntu})
+GRUB_CMDLINE_LINUX_DEFAULT=""
+GRUB_CMDLINE_LINUX=""
+
+# Guardar cambios:
+# CTRL + O
+# ENTER
+# CTRL + X
+
+# Reiniciar nuevamente:
+reboot
+
+# --- EN EL ARRANQUE ---
+
+# Presionar SHIFT (si BIOS) o ESC (si UEFI) para abrir el GRUB
+
+# Seleccionar:
+# Ubuntu, with Linux 6.8.0-60-generic (recovery mode)
+# ENTER
+
+# En el Recovery Menu, seleccionar:
+# Drop to root shell prompt
+# ENTER
+
+# Remontar el sistema de archivos en modo lectura-escritura
+mount -o remount,rw /
+
+# Cambiar la contraseña de root
+passwd root
+
+# (Escribir la nueva contraseña cuando lo solicite)
+
+# Reiniciar el sistema
+reboot
