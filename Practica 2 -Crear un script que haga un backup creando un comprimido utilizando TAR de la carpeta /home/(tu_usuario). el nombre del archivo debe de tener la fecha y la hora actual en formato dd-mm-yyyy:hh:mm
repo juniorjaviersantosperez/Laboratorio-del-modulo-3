@@ -1,11 +1,90 @@
-sudo nano backup.sh              # Crear o editar backup.sh
-chmd +x backup.sh               # ❌ Error de tipeo en chmod
-chmod +x backup.sh              # Dar permisos de ejecución
-sudo chmod +x backup.sh         # Repetido con sudo
-./backup.sh                     # Ejecutar el script
-clear                           # Limpiar pantalla
-sudo ifconfiprueba.sh           # ❌ Error: falta el ./ inicial
-sudo nano ifconfiprueba.sh      # Crear o editar el segundo script
-sudo chmod +x ifconfiprueba.sh  # Permisos de ejecución
-./ifconfiprueba.sh              # Ejecutar el script
+# -----------------------------------------
+# SINTAXIS BÁSICA DE UN SCRIPT EN BASH
+# -----------------------------------------
+# 1. Primera línea (shebang) para indicar intérprete:
+#    #!/bin/bash
+#
+# 2. Variables:
+#    VAR="texto"
+#    VAR=$(comando)
+#
+# 3. Pedir datos:
+#    read -p "Mensaje: " VAR
+#
+# 4. Imprimir datos:
+#    echo "texto"
+#
+# 5. Guardar script:
+#    nano script.sh → escribir contenido
+#    CTRL+O → ENTER → CTRL+X
+#
+# 6. Dar permisos de ejecución:
+#    chmod +x script.sh
+#
+# 7. Ejecutar:
+#    ./script.sh
+# -----------------------------------------
+
+# ========== SCRIPT 1: BACKUP ==========
+nano back.sh
+
+# Contenido:
+#!/bin/bash
+USUARIO="$(whoami)"
+FECHA="$(date +'%Y-%m-%d_%H-%M')"
+
+tar -czvf "/home/$USUARIO/bak_${FECHA}.tar.gz" "/home/$USUARIO"
+echo "Backup OK: /home/$USUARIO/bak_${FECHA}.tar.gz"
+
+# Guardar y salir: CTRL+O, ENTER, CTRL+X
+
+# Dar permisos y ejecutar:
+chmod +x back.sh
+./back.sh
+
+# Verificar archivo creado:
+ls -lh ~
+# Ver contenido del backup:
+tar -tzvf bak_YYYY-MM-DD_HH-MM.tar.gz
+
+# ========== SCRIPT 2: GUARDAR CONFIGURACIÓN DE RED ==========
+nano ifconfig1.sh
+
+# Contenido:
+#!/bin/bash
+USUARIO="$(whoami)"
+RUTA="/home/$USUARIO/Desktop"
+mkdir -p "$RUTA"
+
+read -p "Ingrese nombre de archivo: " NOMBRE
+ifconfig > "$RUTA/${NOMBRE}.txt"
+echo "Guardado en: $RUTA/${NOMBRE}.txt"
+
+# Guardar y salir: CTRL+O, ENTER, CTRL+X
+
+# Dar permisos y ejecutar:
+chmod +x ifconfig1.sh
+./ifconfig1.sh
+
+# Verificar archivo creado:
+cd ~/Desktop
+ls -lh
+cat NOMBRE_QUE_PUSISTE.txt
+
+------------------SCRIPT 3-------------------------------
+import smtplib
+from email.message import EmailMessage
+from datetime import datetime as dt
+
+de, pw = "juniorjaviersantosperez@gmail.com", "vycz svvg utol cjbd"
+msg = EmailMessage()
+msg['From'], msg['To'] = de, input("Para: ")
+msg['Subject'] = input("Asunto: ")
+msg.set_content(f"{input('Cuerpo: ')}\n\nEnviado el {dt.now():%Y-%m-%d %H:%M:%S}")
+
+with smtplib.SMTP_SSL("smtp.gmail.com", 465) as s:
+    s.login(de, pw)
+    s.send_message(msg)
+
+print(" ✔")
 
